@@ -1,2 +1,6 @@
 TODO LIST
-- [X]shower, Priority: 5
+- []code C++, Priority: 3
+- []do homework, Priority: 4
+- [X]shower, Priority: 1
+- [X]do laundry, Priority: 2
+- [X]write essay, Priority: 5

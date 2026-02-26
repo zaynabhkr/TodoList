@@ -1,7 +1,7 @@
 #include "node.hpp"
 
-Node::Node(const std::string& dataValue, int priorityValue, Node* next)
-    : Data(dataValue), Priority(priorityValue), Next(next) {}
+Node::Node(const std::string& dataValue, int priorityValue, bool completedValue, Node* next)
+    : Data(dataValue), Priority(priorityValue), completed(completedValue), Next(next) {}
 
 std::string Node::GetNodeData()const {
 
@@ -22,6 +22,13 @@ Node* Node::getNext() const {
     return Next;
 
 }
+bool Node::isCompleted() const {
+
+    //Get the next Node
+
+    return completed;
+}
+
 void Node::addNode(Node* nextnode){
 
     //Add a new node

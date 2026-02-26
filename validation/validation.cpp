@@ -1,5 +1,7 @@
 #include "validation.hpp"
 #include <algorithm>
+#include <cstddef>
+#include <optional>
 #include <sstream>
 #include <stdexcept>
 #include <vector>
@@ -127,4 +129,41 @@ std::optional<TaskLine> Validation::splitStringValidation(std::string line) {
         return TaskLine{ *task, *comp, *prio};
 
     }
+}
+
+std::optional<TaskLine> Validation::CheckingDuplicates(TaskLine line, ordered_linkedlist list){
+    std::string task = line.task;
+    foundItem it = list.search_item(line);
+    std::string response;
+    if(it.found){
+        while(response != "yes" || response !="no"){
+            std::string msg =
+            "\nINFO: There is another item " + task +
+            " in the TODO list. Do you want to replace " + line.task +
+            " of priority " + std::to_string(line.priority) +
+            " and " + (line.completed ? "completed" : "not completed") + " with "
+            + it.items.task + "  of priority : " + std::to_string(it.items.priority) + " and " + (it.items.completed ? "completed" : "not completed") + "?(yes/no)\n \n ";
+
+            std::cout << msg;
+
+            std::cin>>response;
+
+            if (response == "yes"){
+                list.deleting_item(line);
+                return line;
+            }
+            else if (response == "no"){
+                return std::nullopt;
+            }
+            else {
+                std::cerr<<std::endl;
+                std::cerr<<"Please write yes/no";
+                std::cerr<<std::endl;
+                continue;
+            }
+        }
+    }
+    return line;
+
+
 }

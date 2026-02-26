@@ -2,7 +2,6 @@
 #include <fstream>
 #include <string>
 #include <cassert>
-#include "linkedlist/linkedlist_util.cpp"
 #include "validation/validation.cpp"
 #include <string>
 
@@ -13,8 +12,7 @@ int main() {
 
     std::ifstream file;
     std::ofstream fileoutput;
-    ordered_linkedlist items_completed;
-    ordered_linkedlist items_not_completed;
+    ordered_linkedlist items_linkedlist;
     int priority_task;
     std::string item;
     TaskLine items;
@@ -44,27 +42,20 @@ int main() {
             else {
             auto parsed = v.splitStringValidation(item);
 
-            if (!parsed) {
-                continue; // do not terminate; just ask for another line
-            }
-
-            // Use the validated result
-            items = *parsed;
-            const std::string& task = items.task;
-            const bool completed = items.completed;
-            const int priority = items.priority;
-
-                //checking if task is complete:
-                if(completed){
-                    items_completed.insert(task, priority);
+                if (!parsed) {
+                    continue; // do not terminate; just ask for another line
                 }
-                else{
-                    items_not_completed.insert(task, priority);
-                }
+
+                // Use the validated result
+                items = *parsed;
+                const std::string& task = items.task;
+                const bool completed = items.completed;
+                const int priority = items.priority;
+
+                items_linkedlist.insert(task, priority,completed);
                 i++;
             }
         }
-        items_not_completed.print_linkedlist_incomplete(fileoutput);
-        items_completed.print_linkedlist_complete(fileoutput);
+        items_linkedlist.print_linkedlist(fileoutput);
     }
 }
