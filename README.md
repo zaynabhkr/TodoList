@@ -29,22 +29,17 @@ g++ -std=c++20 main.cpp validation/validation.cpp linkedlist/linkedlist_util.cpp
 ```
 
 ## Project Structure
-.
+```bash
 ├── main.cpp
-
-├── validation/
+├── validation
 │   ├── validation.hpp
-
 │   └── validation.cpp
-└── linkedlist/
+└── linkedlist
     ├── linkedlist_util.hpp
-
     ├── linkedlist_util.cpp
-
     ├── node.hpp
-
     └── node.cpp
-
+```
 # 🧠 High‑Level Flow
 
 1. Read user input until `"exit"`.
