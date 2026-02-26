@@ -33,13 +33,10 @@ g++ -std=c++20 main.cpp validation/validation.cpp linkedlist/linkedlist_util.cpp
 ├── main.cpp
 
 ├── validation/
-
 │   ├── validation.hpp
 
 │   └── validation.cpp
-
 └── linkedlist/
-
     ├── linkedlist_util.hpp
 
     ├── linkedlist_util.cpp
