@@ -101,3 +101,76 @@ exit
 [] dishes, Priority: 3
 
 [X] study, Priority: 2
+
+### Ordering Rules
+
+The list is always kept **sorted** using these rules:
+
+1) **Incomplete** tasks come **before** any **completed** tasks.
+2) Within the same completion group, sort by **ascending priority** (1, 2, 3, …).
+
+**Decision helper (conceptual):**
+```cpp
+// returns true if new should come before 'node'
+bool comesBefore(bool newCompleted, int newPriority, const Node* node) {
+    if (newCompleted != node->isCompleted()) {
+        return !newCompleted && node->isCompleted(); // incomplete before complete
+    }
+    return newPriority < node->GetNodePriority();    // lower number first
+}
+```
+### Duplicate Handling
+
+- A “duplicate” is any new input whose **task text matches** an existing task’s text (case‑sensitive unless otherwise noted in your validator).
+- When a duplicate is detected:
+  1) The program **shows the existing item** and the **new candidate**,
+  2) Prompts: **replace** (delete old, insert new in order) or **skip**.
+
+**Why this design?**
+- Tasks are considered unique by their **task text** to keep UX simple.
+- Priority/completion may change — replacement lets the user update them without creating two entries with the same name.
+
+
+**Example (duplicate flow)**
+
+Input:
+  - "study, no, 2"
+  - "study, yes, 1"  ← duplicate by task text "study"
+
+Prompt:
+```bash
+INFO: There is a duplicate item in the TODO list. Do you want to replace "study" of priority "2" and "not completed" with "study" of priority : "1" and "completed"? (yes/no)
+```
+- yes → old "study" removed, new one inserted in order
+- no  → skip insertion, keep original
+
+### 🧩 Ordering Rules
+
+The list is always kept **sorted** using these rules:
+
+1) **Incomplete** tasks come **before** any **completed** tasks.
+2) Within the same completion group, sort by **ascending priority** (1, 2, 3, …).
+
+**Decision helper (conceptual):**
+```cpp
+// returns true if new should come before 'node'
+bool comesBefore(bool newCompleted, int newPriority, const Node* node) {
+    if (newCompleted != node->isCompleted()) {
+        return !newCompleted && node->isCompleted(); // incomplete before complete
+    }
+    return newPriority < node->GetNodePriority();    // lower number first
+}
+```
+### Insertion Cases
+
+- **Empty list** → new node becomes head.
+- **Before head** → if new node should come before current head.
+- **Middle** → walk until first spot where new should come before `current->next`.
+- **Tail** → if no earlier spot, append to the end.
+
+**Traversal condition (conceptual):**
+```cpp
+while (current->getNext() && !comesBefore(new, current->getNext())) {
+    current = current->getNext();
+}
+```
