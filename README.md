@@ -175,8 +175,13 @@ while (current->getNext() && !comesBefore(new, current->getNext())) {
 }
 ```
 ![1st slide](images_for_README/1.png)
+---
 ![2nd slide](images_for_README/2.png)
+---
 ![3rd slide](images_for_README/3.png)
+---
 ![4th slide](images_for_README/4.png)
+---
 ![5th slide](images_for_README/5.png)
+---
 ![6th slide](images_for_README/6.png)
