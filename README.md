@@ -144,7 +144,7 @@ INFO: There is a duplicate item in the TODO list. Do you want to replace "study"
 - yes → old "study" removed, new one inserted in order
 - no  → skip insertion, keep original
 
-### 🧩 Ordering Rules
+### Ordering Rules
 
 The list is always kept **sorted** using these rules:
 
@@ -175,13 +175,22 @@ while (current->getNext() && !comesBefore(new, current->getNext())) {
 }
 ```
 ![1st slide](images_for_README/1.png)
-***
+
+<hr style="border: 3px solid black;">
+
 ![2nd slide](images_for_README/2.png)
-***
+
+<hr style="border: 3px solid black;">
+
 ![3rd slide](images_for_README/3.png)
-***
+<hr style="border: 3px solid black;">
+
 ![4th slide](images_for_README/4.png)
-***
+
+<hr style="border: 3px solid black;">
+
 ![5th slide](images_for_README/5.png)
-***
+
+<hr style="border: 3px solid black;">
+
 ![6th slide](images_for_README/6.png)
