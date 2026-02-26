@@ -24,7 +24,7 @@ formatted `output.txt` file.
 From the project root:
 
 ```bash
-g++ -std=c++20 main.cpp validation/validation.cpp linkedlist/linkedlist_util.cpp -o main
+g++ main.cpp -o main
 ./main
 ```
 
